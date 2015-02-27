@@ -36,6 +36,11 @@ $tmp = array(
 		'xtype' => 'textfield',
 		'value' => '[[+assetsUrl]]css/web/default.css',
 		'area' => 'ha.main',
+	)
+	,'default_gravatar' => array(
+		'xtype' => 'textfield',
+		'value' => 'mm',
+		'area' => 'ha.main',
 	),
 
 );
