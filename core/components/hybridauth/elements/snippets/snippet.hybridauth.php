@@ -50,6 +50,8 @@ if ($modx->user->isAuthenticated($modx->context->key)) {
 
 	$user = $modx->user->toArray();
 	$profile = $modx->user->Profile->toArray();
+	$gravatar = $HybridAuth->getOption('default_gravatar',$scriptProperties,'mm');
+	$d = ($gravatar)?'?d='.$gravatar:NULL;
 	unset($profile['id']);
 	$arr = array_merge(
 		$user,
@@ -60,7 +62,7 @@ if ($modx->user->isAuthenticated($modx->context->key)) {
 			'logout_url' => $url . 'logout',
 			'providers' => $HybridAuth->getProvidersLinks($providerTpl, $activeProviderTpl),
 			'error' => $error,
-			'gravatar' => 'https://gravatar.com/avatar/' . md5(strtolower($profile['email'])),
+			'gravatar' => 'https://gravatar.com/avatar/' . md5(strtolower($profile['email'])) . $d,
 		)
 	);
 
