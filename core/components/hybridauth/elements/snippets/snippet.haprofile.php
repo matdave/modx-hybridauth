@@ -78,6 +78,8 @@ if ($services = $modx->user->getMany('Services')) {
 $url = $HybridAuth->getUrl();
 $user = $modx->user->toArray();
 $profile = $modx->user->Profile->toArray();
+$gravatar = $HybridAuth->getOption('default_gravatar',$scriptProperties,'mm');
+$d = ($gravatar)?'?d='.$gravatar:NULL;
 $data = array_merge(
 	$user,
 	$profile,
@@ -87,7 +89,7 @@ $data = array_merge(
 		'login_url' => $url . 'login',
 		'logout_url' => $url . 'logout',
 		'providers' => $HybridAuth->getProvidersLinks($providerTpl, $activeProviderTpl),
-		'gravatar' => 'https://gravatar.com/avatar/' . md5(strtolower($profile['email'])),
+		'gravatar' => 'https://gravatar.com/avatar/' . md5(strtolower($profile['email'])) . $d,
 	)
 );
 
